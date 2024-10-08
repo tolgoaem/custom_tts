@@ -1,0 +1,8 @@
+어떠한 이유로 인해 다운로드에 실패했습니다. 
+원문 링크를 안내하오니 확인 하여 직접 다운로드 하기 바랍니다.
+원문 링크: https://github.com/myshell-ai/OpenVoice
+사용법 링크: https://github.com/myshell-ai/OpenVoice/blob/main/docs/USAGE.md
+다운로드 링크: https://myshell-public-repo-host.s3.amazonaws.com/openvoice/checkpoints_v2_0417.zip
+[사용 방법]
+원문 링크와 사용법 링크에 들어가서 방법을 숙지한 다음에 checkpoint를 다운로드 받고, 
+"checkpoint_v2"라는 폴더 이름으로 압축을 풀어서 사용하세요

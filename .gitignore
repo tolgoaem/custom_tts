@@ -1,0 +1,6 @@
+# 폴더 무시
+checkpoints_v2/
+processed/
+
+# 파일 무시
+checkpoints_v2_0417.zip
