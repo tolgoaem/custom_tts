@@ -204,6 +204,7 @@ python demo_2(gui).py
 ![alt text](readme_img/1.png)  
 작동 영상도 첨부하오니 확인 바랍니다.  
 YouTube 링크: https://youtu.be/1OdkNfU_sHQ?si=g9UoR35tEih_PDDq  
+![alt text](readme_img/2.png)  
 
 # 4. Features (기능 설명)
 
