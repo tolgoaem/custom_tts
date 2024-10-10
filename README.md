@@ -146,7 +146,7 @@ python demo_2(gui).py
 ```
 
 그럼 아래와 같이 GUI 프로그램이 켜지게 되며 키보드와 마우스 입력을 통하여 demo를 실행해 볼 수 있습니다.
-![alt text](readme_img/1.png)
+![alt text](readme_img/1.png)  
 작동 영상도 첨부하오니 확인 바랍니다.
 YouTube 링크: 
 
