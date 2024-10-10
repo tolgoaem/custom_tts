@@ -9,16 +9,22 @@ from openvoice.api import ToneColorConverter
 from melo.api import TTS
 
 class Custom_TTS:
-    def __init__(self, model_path='checkpoints_v2'):
+    def __init__(self, model_path='checkpoints_v2', output_path='output'):
         '''
         model_path: TTS를 위한 베이스 모델, 음성 변조를 위한 베이스 모델이 위치한 path
         '''
         print('본 코드를 개발한 Repo. 입니다: https://github.com/Nyan-SouthKorea/RealTime_zeroshot_TTS_ko')
         print('다음 Repo.를 참조하여 개발한 모듈입니다: https://github.com/myshell-ai/OpenVoice')
         self.model_path = model_path
+        self.result_cnt = 0
+        self.output_path = output_path
 
         # cuda 확인
         self.check_cuda()
+
+        # output 폴더 삭제 후 시작
+        if os.path.exists(self.output_path):
+            shutil.rmtree(self.output_path)
 
     def check_cuda(self):
         '''cuda 환경 확인'''
@@ -80,27 +86,31 @@ class Custom_TTS:
         self.target_se, audio_name = se_extractor.get_se(speaker_path, self.tone_color_converter, vad=vad)
         print('목소리 톤 임베딩 완료')
 
-    def make_speech(self, text, output_path='output', speed=1.1):
+    def make_speech(self, text, speed=1.1):
         '''
         텍스트를 입력하면 TTS를 수행하는 함수. mp3를 생성하여 로컬에 저장함
         text: 변환을 원하는 언어를 입력
         output_path: TTS 결과물이 출력되는 경로
         speed: 음성 재생 속도. 1.1이 자연스러운 것 같음
         '''
-        # 경로 설정, 기존 파일 존재시 삭제, 폴더 생성
-        src_path = f'{output_path}/tmp.wav'
-        if os.path.exists(output_path):
-            shutil.rmtree(output_path)
-        os.makedirs(output_path, exist_ok=True)
+        try:
+            # 경로 설정, 폴더 생성
+            src_path = f'{self.output_path}/tmp.wav'
+            os.makedirs(self.output_path, exist_ok=True)
 
-        # TTS 수행
-        self.tts_model.tts_to_file(text, self.speaker_id, src_path, speed=speed)
+            # TTS 수행
+            self.tts_model.tts_to_file(text, self.speaker_id, src_path, speed=speed)
+            print('TTS 생성 완료')
 
-        # 목소리 변조 수행
-        self.tone_color_converter.convert(audio_src_path=src_path, 
-                                          src_se=self.source_se, 
-                                          tgt_se=self.target_se, 
-                                          output_path=f'{output_path}/result.wav')
+            # 목소리 변조 수행
+            self.tone_color_converter.convert(audio_src_path=src_path, 
+                                            src_se=self.source_se, 
+                                            tgt_se=self.target_se, 
+                                            output_path=f'{self.output_path}/result_{self.result_cnt}.wav')
+            print('목소리 변조 완료')
+            self.result_cnt += 1
+        except Exception as e:
+            print(e)
 
 class Down_and_extract:
     def do(self, url, filename):

@@ -13,9 +13,80 @@
 이 프로젝트는 특히 음성 인터페이스를 사용하는 로봇, 가상 비서, 또는 다양한 사용자 인터랙션 시스템에 적용하기에 적합합니다. 사용자는 별도의 복잡한 설정이나 학습 과정 없이 고품질의 음성을 사용할 수 있으며, 이를 통해 서비스의 사용성을 크게 향상시킬 수 있습니다.
 
 
-# 2. Getting Started (시작하기)
+# 2. Getting Started (환경 설정)
+## [윈도우11, 우분투 22.04 동일 세팅 방법]
 
-# 3. Usage (사용 방법)
+1. **새로운 환경 만들기**
+
+   - **conda 업데이트**:
+     ```bash
+     conda update -n base conda
+     conda update --all
+     python -m pip install --upgrade pip
+     ```
+
+   - **환경 생성 후 실행**:
+     ```bash
+     conda create -n openvoice python=3.9
+     conda activate openvoice
+     ```
+
+2. **CUDA 관련 설정** (PC에 따라 다를 수 있음)
+
+   사용자 PC 환경: 윈도우11, RTX3060, 2024년 10월 기준 최신 드라이버 상태
+   
+   - CUDA 및 PyTorch 설치:
+     ```bash
+     conda install -c conda-forge cudatoolkit=11.8 cudnn=8.9
+     conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
+     ```
+
+   - **CUDA 동작 확인**:
+     아래 Python 스크립트를 실행하여 CUDA가 제대로 동작하는지 확인합니다.
+     ```python
+     python
+     import torch
+     torch.cuda.is_available()
+     ```
+     `True`가 출력되어야 합니다. 만약 `False`가 출력된다면, 다시 설정하거나 GPU 사용을 포기하고 CPU로 계속 진행할 수 있습니다.
+
+3. **OpenVoice 관련 환경 설정**
+
+   - **프로젝트 클론 및 의존성 설치**:
+     ```bash
+     git clone https://github.com/Nyan-SouthKorea/RealTime_zeroshot_TTS_ko.git
+     cd OpenVoice
+     pip install -r requirements.txt
+     ```
+     원본 OpenVoice GitHub 링크: [OpenVoice](https://github.com/myshell-ai/OpenVoice.git)
+
+4. **MELO TTS 설치**
+
+   - **로컬 설치** (동작이 보장된 방법):
+     ```bash
+     cd MeloTTS
+     pip install .
+     ```
+
+   - **원본 GitHub 링크에서 설치** (위에서 로컬로 설치했다면 건너뛰기):
+     ```bash
+     pip install git+https://github.com/myshell-ai/MeloTTS.git
+     python -m unidic download
+     ```
+
+5. **설치 후 최종 확인**
+
+   - CUDA가 제대로 동작하는지 최종 확인:
+     ```python
+     python
+     import torch
+     torch.cuda.is_available()
+     ```
+     `True`가 출력되는지 확인합니다.
+
+
+
+# 3-1. Usage (사용 방법) - Jupyter Notebook(demo_1(scratch).ipynb)
 
 이 섹션에서는 `Custom_TTS` 모듈을 사용하여 텍스트를 음성으로 변환하고, 생성된 음성을 변조하여 사용자 맞춤형 음성을 생성하는 과정을 단계별로 설명합니다. 이 프로젝트는 한국어를 기반으로 한 TTS 시스템을 실시간으로 실행할 수 있으며, 제로샷 음성 변조 기능을 지원합니다.
 
@@ -67,6 +138,17 @@ Extracting: 100%|██████████| 125M/125M [00:00<00:00, 176MB/s
 TTS 모델 로드 완료
 기본 화자 음성 임베딩 완료
 ```
+
+# 3-2. Usage (사용 방법) - demo_2(gui).py
+이 색션에서는 gui버전으로 실행하여 버튼 클릭을 통해 작동을 확인할 수 있습니다. 세팅한 가상환경을 실행한 상태로 아래 명령어로 demo파일을 켭니다.
+```python
+python demo_2(gui).py
+```
+
+그럼 아래와 같이 GUI 프로그램이 켜지게 되며 키보드와 마우스 입력을 통하여 demo를 실행해 볼 수 있습니다.
+![alt text](readme_img/1.png)
+작동 영상도 첨부하오니 확인 바랍니다.
+YouTube 링크: 
 
 ## 4. 참조할 목소리 샘플 입력
 
