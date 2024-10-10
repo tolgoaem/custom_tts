@@ -55,7 +55,7 @@
    - **프로젝트 클론 및 의존성 설치**:
      ```bash
      git clone https://github.com/Nyan-SouthKorea/RealTime_zeroshot_TTS_ko.git
-     cd OpenVoice
+     cd RealTime_zeroshot_TTS_ko
      pip install -r requirements.txt
      ```
      원본 OpenVoice GitHub 링크: [OpenVoice](https://github.com/myshell-ai/OpenVoice.git)
@@ -66,6 +66,7 @@
      ```bash
      cd MeloTTS
      pip install .
+     python -m unidic download
      ```
 
    - **원본 GitHub 링크에서 설치** (위에서 로컬로 설치했다면 건너뛰기):
@@ -261,7 +262,7 @@ YouTube 링크: https://youtu.be/1OdkNfU_sHQ?si=g9UoR35tEih_PDDq
 
 # 5. On-Device (온 디바이스)  
 Jetson Orin Nano Developer Kit, Raspberry Pi 4 등의 싱글 보드에서의 구동 가능 여부도 아래 같이 시연합니다.  
+싱글보드 환경에서는 Anaconda와 달리 venv 환경을 사용하여 구동하시오. Jetson과 Raspberry Pi 플랫폼에는 Anaconda 설치가 안되기 때문입니다.    
   
-Jetson Orin Nano Developer Kit:   
-  
-Raspberry Pi 4: 
+Jetson Orin Nano Developer Kit: https://youtu.be/IGO6aIywQJI  
+![alt text](readme_img/3.png)  
