@@ -266,3 +266,7 @@ Jetson Orin Nano Developer Kit, Raspberry Pi 4 등의 싱글 보드에서의 구
   
 Jetson Orin Nano Developer Kit: https://youtu.be/IGO6aIywQJI  
 ![alt text](readme_img/3.png)  
+
+# 6. 블로그
+보다 자세한 기술 리뷰, 시행착오는 아래 블로그 링크 확인 바랍니다.  
+https://blog.naver.com/112fkdldjs/223623704761  
