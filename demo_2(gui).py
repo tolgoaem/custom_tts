@@ -1,7 +1,11 @@
 import tkinter as tk
+#import tk
 from tkinter import filedialog
+#from tk import filedialog
 from tkinter import messagebox
+#from tk import messagebox
 from tkinter import scrolledtext
+#from tk import scrolledtext
 import os
 import threading
 from custom_tts import Custom_TTS

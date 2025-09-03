@@ -1,0 +1,21 @@
+Traceback (most recent call last):
+  File "/home/joneict/Dev/RealTime_zeroshot_TTS_ko/melo/text/japanese.py", line 12, in <module>
+    import MeCab
+ModuleNotFoundError: No module named 'MeCab'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/joneict/Dev/RealTime_zeroshot_TTS_ko/demo_2(gui).py", line 11, in <module>
+    from custom_tts import Custom_TTS
+  File "/home/joneict/Dev/RealTime_zeroshot_TTS_ko/custom_tts.py", line 9, in <module>
+    from melo.api import TTS
+  File "/home/joneict/Dev/RealTime_zeroshot_TTS_ko/melo/api.py", line 13, in <module>
+    from . import utils
+  File "/home/joneict/Dev/RealTime_zeroshot_TTS_ko/melo/utils.py", line 13, in <module>
+    from melo.text.cleaner import clean_text
+  File "/home/joneict/Dev/RealTime_zeroshot_TTS_ko/melo/text/cleaner.py", line 1, in <module>
+    from . import chinese, japanese, english, chinese_mix, korean, french, spanish
+  File "/home/joneict/Dev/RealTime_zeroshot_TTS_ko/melo/text/japanese.py", line 14, in <module>
+    raise ImportError("Japanese requires mecab-python3 and unidic-lite.") from e
+ImportError: Japanese requires mecab-python3 and unidic-lite.
