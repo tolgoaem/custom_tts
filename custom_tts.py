@@ -112,6 +112,55 @@ class Custom_TTS:
         except Exception as e:
             print(e)
 
+    def make_simple_speech(self, text, speed=1.1, output_filename=None):
+        '''
+        음성 변조 없이 단순히 텍스트를 음성으로 변환하는 함수
+        text: 변환을 원하는 텍스트를 입력
+        speed: 음성 재생 속도. 1.0이 정상 속도
+        output_filename: 출력 파일명 (기본값: simple_result_{번호}.wav)
+        '''
+        try:
+            # 경로 설정, 폴더 생성
+            src_path = f'{self.output_path}/tmp_simple.wav'
+            os.makedirs(self.output_path, exist_ok=True)
+
+            # 출력 파일명 설정
+            if output_filename is None:
+                final_path = f'{self.output_path}/simple_result_{self.result_cnt}.wav'
+            else:
+                if not output_filename.endswith('.wav'):
+                    output_filename += '.wav'
+                final_path = f'{self.output_path}/{output_filename}'
+
+            print(f'단순 TTS 시작: "{text[:50]}{"..." if len(text) > 50 else ""}"')
+
+            # TTS 수행만 (음성 변조 없음)
+            self.tts_model.tts_to_file(text, self.speaker_id, src_path, speed=speed)
+            print('TTS 생성 완료')
+
+            # 임시 파일을 최종 파일로 복사
+            shutil.copy(src_path, final_path)
+            print(f'단순 TTS 완료: {final_path}')
+            
+            # 임시 파일 삭제
+            if os.path.exists(src_path):
+                os.remove(src_path)
+            
+            self.result_cnt += 1
+            return final_path
+            
+        except Exception as e:
+            print(f"단순 TTS 생성 중 오류: {e}")
+            import traceback
+            traceback.print_exc()
+            return None
+
+    def make_speech_without_conversion(self, text, speed=1.1, output_filename=None):
+        '''
+        make_simple_speech의 별칭 메서드 (호환성을 위해)
+        '''
+        return self.make_simple_speech(text, speed, output_filename)
+
 class Down_and_extract:
     def do(self, url, filename):
         try:
